@@ -1,0 +1,90 @@
+<div class="py-3 px-4">
+  <!-- For demo purpose-->
+  <div class="row rounded-lg overflow-hidden shadow">
+    <!-- Users box-->
+    <div class="col-lg-3 col-md-5 col-sm-12 px-0" *ngIf="recentSection">
+      <div class="bg-white">
+
+        <div class="text-white px-4 py-2 bg-dark">
+          <p class="h5 mb-0 py-1">Recent</p>
+        </div>
+
+        <div class="messages-box">
+          <div class="list-group rounded-0">
+            <a [className]="data.userId==selectedUser?.userId?'list-group-item list-group-item-action active text-white rounded-0':'list-group-item list-group-item-action list-group-item-light rounded-0'"
+              *ngFor="let  data of recentChat;let i = index" (click)="getUserChat(data)">
+              <div class="media2 position-relative d-flex justify-content-between align-items-center flex-wrap"><img
+                  src={{data.image}} onerror="this.onerror=null;this.src='./assets/img.jpg'"
+                  alt="user" width=50 class="rounded-circle">
+                <div class="media-body ml-4">
+                  <div class="d-flex align-items-center justify-content-between mb-1">
+                    <h6 class="mb-0">{{data.userName}}</h6><small
+                      class="small font-weight-bold">{{data.createdOn|date:'dd/MMM'}}</small>
+                  </div>
+                  <p class="font-italic mb-0 hideShowMsg">{{data.message}}</p>
+                  <p class="font-italic mb-0 text-small text-danger" *ngIf="data?.isTyping">typing.....</p>
+                </div>
+                <span *ngIf="signalR.isOnline(data.userId)" class="online"></span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Chat Box-->
+    <div class="col-lg-9 col-md-7 col-sm-12  px-0" *ngIf="!!selectedUser && chatSection">
+      <div
+        class="media2 position-relative  bg-gray px-4 py-2 bg-light d-flex justify-content-between align-items-center flex-wrap">
+        <figure style="margin-bottom: 0px;"><img src={{selectedUser?.image}}
+          onerror="this.onerror=null;this.src='./assets/img.jpg'" alt="user" width=50
+          height="50" class="rounded-circle"><span class=" text-small text-danger" *ngIf="selectedUser?.isTyping">&nbsp; is typing...</span></figure>
+        <p class="h5 mb-0 py-1">{{selectedUser?.userName}}</p>
+        <span *ngIf="signalR.isOnline(selectedUser?.userId)" class="online2"></span>
+        <span class="justtify-content-end cursor" (click)="close()">X</span>
+      </div>
+
+      <div class="px-4 py-5 chat-box bg-white" #ChatDiv>
+
+        <div *ngFor="let message of userChat;">
+          <!-- Sender Message-->
+          <div class="media w-70 mb-3" *ngIf="message.fromUserId!=currentUser"><img
+              src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50"
+              class="rounded-circle">
+            <div class="media-body ml-3">
+              <div class="bg-light abc rounded py-2 px-3 mb-2">
+                <p class="text-small mb-0 text-muted">{{message.text}}</p>
+              </div>
+              <p class="small text-muted">{{message.createdOn|date:'medium'}}</p>
+            </div>
+          </div>
+
+          <!-- Reciever Message-->
+          <div class="media w-80 ml-auto mb-3 text-right" *ngIf="message.fromUserId==currentUser">
+            <div class="media-body">
+              <div class="bg-primary abc rounded py-2 px-3 mb-2">
+                <p class="text-small mb-0 text-white">{{message.text}}</p>
+              </div>
+              <p class="small text-muted">{{message.createdOn|date:'medium'}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Typing area -->
+      <div class="bg-light">
+        <div class="input-group">
+          <input type="text" placeholder="Type a message" aria-describedby="button-addon2"
+            class="form-control rounded-0 border-0 py-4 bg-light" #text (keydown)="notify($event)">
+          <div class="input-group-append">
+            <button id="button-addon2" class="btn btn-link" [disabled]="text.value.trim()==''"
+              (click)="sendMessage(text.value);text.value=''"> <i class="fa fa-paper-plane"></i></button>
+          </div>
+        </div>
+        <div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

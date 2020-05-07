@@ -1,0 +1,28 @@
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Email</th>
+      <th scope="col">Address</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Dob</th>
+      <th scope="col">Send Message</th>
+      <th scope="col">Image</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of dataSource;let i=index">
+      <th scope="row">{{i+1}}</th>
+      <td>{{data.firstName}}</td>
+      <td>{{data.lastName}}</td>
+      <td>{{data.email}}</td>
+      <td>{{data.address}}</td>
+      <td>{{data.gender|Gender}}</td>
+      <td>{{data.dob|date}}</td>
+      <td><button class="btn btn-primary" (click)="sendMessage(data.id)">Send Message</button></td>
+      <td><img src={{data.imagePath}} onerror="this.onerror=null;this.src='http://localhost:5000/Images/download.jpg';"  class="img-thumbnail" height="100" width="200" ></td>
+    </tr>
+  </tbody>
+</table>

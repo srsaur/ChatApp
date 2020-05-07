@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col-lg-9 offset-lg-3 ">
+
+    <mat-card class="my-card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon class="align-text-bottom">how_to_reg</mat-icon>Registation
+        </mat-card-title>
+
+      </mat-card-header>
+      <mat-card-content>
+        <form class="my-form" #hero [formGroup]="builder">
+          <mat-form-field class="full-width">
+            <mat-label>First Name</mat-label>
+            <input matInput placeholder="First name" name="fname" formControlName='firstName' required>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>Last Name</mat-label>
+            <input matInput placeholder="Last Name" name="lname" formControlName='lastName' required>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>Address</mat-label>
+            <input matInput placeholder="Address" name="address" formControlName='address' required>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" name="email" formControlName='email' required>
+            <mat-error *ngIf="builder.controls.email.invalid && builder.controls.email.value">please enter a valid email
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Password" name="password" type="password" formControlName='password'>
+            <mat-error *ngIf="builder.controls.password.invalid && builder.controls.password.value">Pleasae enter a
+              valid password</mat-error>
+          </mat-form-field>
+          <div class="row">
+            <div class="col-7">
+              <section class="example-section">
+                <label class="example-margin">Gender:</label>
+                <mat-radio-group formControlName="gender">
+                  <mat-radio-button class="example-margin" value="0">Male</mat-radio-button>
+                  <mat-radio-button class="example-margin" value="1">Female</mat-radio-button>
+                  <mat-radio-button class="example-margin" value="2">Other</mat-radio-button>
+                </mat-radio-group>
+              </section>
+              <mat-form-field>
+                <mat-label>Date of Birth</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="dob" placeholder="Choose a date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col-5">
+              <img [src]="builder.get('imagePath').value" class="img-thumbnail" alt="Cinque Terre">
+            </div>
+          </div>
+          <div class="custom-file" id="customFile" lang="es">
+            <input type="file" class="custom-file-input" id="exampleInputFile" formControlName="imagePath"
+              (change)="onFileChange($event.target.files)" aria-describedby="fileHelp">
+            <label class="custom-file-label" #labelInput for="exampleInputFile">
+              select a File
+            </label>
+          </div>
+        </form>
+        <mat-progress-bar *ngIf="!!progress" mode="determinate" [value]="progress"></mat-progress-bar>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button (click)="register()" [disabled]="builder.invalid">REGISTER</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

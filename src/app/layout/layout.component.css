@@ -1,0 +1,72 @@
+figure{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    overflow:hidden;
+    margin-bottom: 0px;
+}
+figure img{
+    width:100%;
+}
+.mail-list a{
+    color:red;
+    transition:all 0.3s ease-in-out;
+}
+.mail-list a:hover{
+    color:green;
+}
+.menu-mobile{
+    display:none !important;
+}
+.nav-link{
+    cursor: pointer;
+}
+ .notification-popup h2{
+     font-size:20px;
+     border-bottom:2px solid grey;
+     font-weight:500;
+     color:royalblue;
+     text-align: center;padding-bottom:10px;
+     
+ }
+ .notification-popup {
+    font-size:16px;
+    padding-top:15px;
+    font-weight:400;
+    border-bottom:2px solid grey;
+ }
+.notification-popup{
+    position: absolute;
+    top:100%;
+    
+    left:0;
+    
+    background:#000;
+    width:200px;
+
+}
+.heading-time{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+}
+.heading-time h5{
+    font-size: 14px;
+    color:greenyellow;
+    font-weight:700;
+}
+.heading-time span ,.report-wrapper li p{
+font-size: 12px;
+font-weight:500;
+margin-bottom:0;
+color:beige;
+}
+.report-wrapper {
+    padding:10px !important;
+}
+.report-wrapper li{
+    padding-bottom:5px;
+    padding-top:5px;
+    list-style: none;
+    border-bottom:1px solid green;
+}

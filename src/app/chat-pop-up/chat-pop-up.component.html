@@ -1,0 +1,49 @@
+
+<div class="media2 position-relative  bg-gray px-4 py-2 bg-light d-flex justify-content-between align-items-center flex-wrap">
+  <img src={{data.image}} onerror="this.onerror=null;this.src='./assets/img.jpg'"
+                  alt="user" width=50  height="50" class="rounded-circle">
+  <p class="h5 mb-0 py-1">{{data.name}}<span class=" text-small text-danger" *ngIf="isTyping">&nbsp; is typing...</span></p>
+  <span *ngIf="signalR.isOnline(data.userID)" class="online"></span>
+  <span class="justtify-content-end cursor" (click)="close()">X</span>
+</div>
+
+<div  class="px-4 py-5 chat-box bg-white" #ChatDiv>
+  <div *ngFor="let message of userChat">
+    <!-- Sender Message-->
+    <div class="media w-70 mb-3" *ngIf="message.fromUserId!=currentUser"><img
+        src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50"
+        class="rounded-circle">
+      <div class="media-body ml-3">
+        <div class="bg-light abc rounded py-2 px-3 mb-2">
+          <p class="text-small mb-0 text-muted">{{message.text}}</p>
+        </div>
+        <p class="small text-muted">{{message.createdOn|date:'medium'}}</p>
+      </div>
+    </div>
+
+    <!-- Reciever Message-->
+    <div class="media w-80 ml-auto mb-3 text-right" *ngIf="message.fromUserId==currentUser">
+      <div class="media-body">
+        <div class="bg-primary abc rounded py-2 px-3 mb-2">
+          <p class="text-small mb-0 text-white">{{message.text}}</p>
+        </div>
+        <p class="small text-muted">{{message.createdOn|date:'medium'}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Typing area -->
+<div class="bg-light">
+  <div class="input-group">
+    <input type="text" placeholder="Type a message" aria-describedby="button-addon2"
+      class="form-control rounded-0 border-0 py-4 bg-light" #text (keydown)="notify($event)">
+    <div class="input-group-append">
+      <button id="button-addon2" class="btn btn-link" [disabled]="text.value.trim()==''"
+        (click)="sendMessage(text.value);text.value=''"> <i class="fa fa-paper-plane"></i></button>
+    </div>
+  </div>
+  <div>
+
+</div>
+</div>

@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+      <div class="col-md-8">
+          <div class="people-nearby">
+            <div class="nearby-user" *ngFor="let data of dataSource">
+              <div class="row">
+                <div class="col-md-2 col-sm-2">
+                  <img [src]="data.imagePath" onerror="this.onerror=null;this.src='./assets/img.jpg'" alt="user" class="profile-photo-lg">
+                </div>
+                <div class="col-md-7 col-sm-7">
+                  <h5><a href="#" class="profile-link">{{data.name}}</a></h5>
+                  <p>{{data.email}}</p>
+                  <p class="text-muted">{{data.address}}</p>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                  <button class="btn btn-primary pull-right" [disabled]="data.isAccepted"  (click)="sendRequest(data)">{{data.isAccepted?'Request accepted':'Accept'}}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
+</div>

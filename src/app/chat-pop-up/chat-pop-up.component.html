@@ -1,17 +1,18 @@
-
-<div class="media2 position-relative  bg-gray px-4 py-2 bg-light d-flex justify-content-between align-items-center flex-wrap">
-  <img src={{data.image}} onerror="this.onerror=null;this.src='./assets/img.jpg'"
-                  alt="user" width=50  height="50" class="rounded-circle">
-  <p class="h5 mb-0 py-1">{{data.name}}<span class=" text-small text-danger" *ngIf="isTyping">&nbsp; is typing...</span></p>
+<div
+  class="media2 position-relative  bg-gray px-4 py-2 bg-light d-flex justify-content-between align-items-center flex-wrap">
+  <img src={{data.image}} onerror="this.onerror=null;this.src='./assets/img.jpg'" alt="user" width=50 height="50"
+    class="rounded-circle">
+  <p class="h5 mb-0 py-1">{{data.name}}
+  </p>
   <span *ngIf="signalR.isOnline(data.userID)" class="online"></span>
   <span class="justtify-content-end cursor" (click)="close()">X</span>
 </div>
 
-<div  class="px-4 py-5 chat-box bg-white" #ChatDiv>
+<div class="px-4 py-5 chat-box bg-white" #ChatDiv >
   <div *ngFor="let message of userChat">
     <!-- Sender Message-->
-    <div class="media w-70 mb-3" *ngIf="message.fromUserId!=currentUser"><img
-        src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50"
+    <div class="media w-70 mb-3" *ngIf="message.fromUserId!=currentUser"><img src={{data.image}}
+        onerror="this.onerror=null;this.src='./assets/img.jpg'" alt="user" width="50" height="50"
         class="rounded-circle">
       <div class="media-body ml-3">
         <div class="bg-light abc rounded py-2 px-3 mb-2">
@@ -31,6 +32,36 @@
       </div>
     </div>
   </div>
+  <!----Show message Icon-->
+  <div class="media w-70 mb-3" *ngIf="isTyping"><img src={{data.image}}
+      onerror="this.onerror=null;this.src='./assets/img.jpg'" alt="user" width="50" class="rounded-circle">
+    <div class="media-body ml-3" style="overflow: hidden;height: 50px; ">
+      <svg
+        style="background:#fff;display:block;" width="100px" height="100px" viewBox="26 30 100 100"
+        preserveAspectRatio="xMidYMid">
+        <circle cx="32" cy="53.6145" r="4" fill="#fe718d">
+          <animate attributeName="cy" calcMode="spline" keySplines="0 0.5 0.5 1;0.5 0 1 0.5;0.5 0.5 0.5 0.5"
+            repeatCount="indefinite" values="63;37;63;63" keyTimes="0;0.315;0.63;1" dur="1s" begin="-0.63s"></animate>
+        </circle>
+        <circle cx="41" cy="63" r="4" fill="#f47e60">
+          <animate attributeName="cy" calcMode="spline" keySplines="0 0.5 0.5 1;0.5 0 1 0.5;0.5 0.5 0.5 0.5"
+            repeatCount="indefinite" values="63;37;63;63" keyTimes="0;0.315;0.63;1" dur="1s" begin="-0.504s"></animate>
+        </circle>
+        <circle cx="50" cy="63" r="4" fill="#f8b26a">
+          <animate attributeName="cy" calcMode="spline" keySplines="0 0.5 0.5 1;0.5 0 1 0.5;0.5 0.5 0.5 0.5"
+            repeatCount="indefinite" values="63;37;63;63" keyTimes="0;0.315;0.63;1" dur="1s" begin="-0.378s"></animate>
+        </circle>
+        <circle cx="59" cy="63" r="4" fill="#abbd81">
+          <animate attributeName="cy" calcMode="spline" keySplines="0 0.5 0.5 1;0.5 0 1 0.5;0.5 0.5 0.5 0.5"
+            repeatCount="indefinite" values="63;37;63;63" keyTimes="0;0.315;0.63;1" dur="1s" begin="-0.252s"></animate>
+        </circle>
+        <circle cx="68" cy="44.3759" r="4" fill="#849b87">
+          <animate attributeName="cy" calcMode="spline" keySplines="0 0.5 0.5 1;0.5 0 1 0.5;0.5 0.5 0.5 0.5"
+            repeatCount="indefinite" values="63;37;63;63" keyTimes="0;0.315;0.63;1" dur="1s" begin="-0.126s"></animate>
+        </circle>
+      </svg>
+    </div>
+  </div>
 </div>
 
 <!-- Typing area -->
@@ -45,5 +76,5 @@
   </div>
   <div>
 
-</div>
+  </div>
 </div>

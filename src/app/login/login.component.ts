@@ -25,15 +25,14 @@ export class LoginComponent implements OnInit {
 
   login():void{
   let self=this;
-
   self.client.post(AppSetting.apiUrl+"api/account/signIn",self.loginForm.value)
-              .subscribe((res:any)=>{
+              .subscribe(async (res:any)=>{
                   localStorage.setItem('token',res.result)
                   self.signalr.user=this.signalr.Auth.decodeToken();
-                  self.route.navigate(['/']);
-                  self.signalr.ConnectionOn();
+                  // await self.signalr.ConnectionOn();
+                  await self.route.navigate(['/home']);
               });
   }
 
-  
+
 }

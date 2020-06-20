@@ -1,65 +1,61 @@
 <nav class="navbar  sticky-top navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" routerLink="/">
-        <span class="material-icons align-text-bottom">home
-        </span>DemoApp</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <figure>
-                    <img [src]="auth.signalR.user.image" onerror="this.onerror=null;this.src='http://localhost:5000/Images/download.jpg';"
-                        alt="user">
-                </figure>
+  <a class="navbar-brand" routerLink="/home">
+    <span class="material-icons align-text-bottom">home
+    </span>ChatApp</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <figure>
+          <img [src]="auth.signalR.user.image" alt="user">
+        </figure>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/profile">{{auth.signalR.user.EmailId}}</a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" routerLink="/dashboard">Home <span class="sr-only">(current)</span></a>
+      </li> -->
+      <li class="nav-item position-relative pop-wrapper">
+        <a class="nav-link" (click)="bellClick()"><span
+            class=" material-icons align-top">notifications_active</span><span class="badge badge-light"
+            *ngIf="badgeCount>0">{{badgeCount}}</span></a>
+        <div class="notification-popup" [hidden]="bell">
+          <h2>Notification</h2>
+          <ul class="report-wrapper" *ngFor="let data of auth.signalR.notifications">
+            <li>
+              <div class="heading-time">
+                <h5>Notification</h5><span>{{data.createdData|fromNow}}</span>
+              </div>
+              <p>{{data.message}}</p>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/profile">{{auth.signalR.user.EmailId}}</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/dashboard">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item position-relative pop-wrapper">
-                <a class="nav-link" routerLink="/heroes"><span class=" material-icons align-top">notifications_active</span></a>
-                <div class="notification-popup" [hidden]="true">
-                    <h2>Notification</h2>
-                <ul class=" report-wrapper">
-                    <li>
-                <div class="heading-time"><h5>Deails heading</h5><span>12:00 AM</span></div>
-                    <p>detail report</p>
-                    
-                </li>
-                <li>
-                    <div class="heading-time"><h5>Deails heading</h5><span>12:00 AM</span></div>
-                        <p>detail report</p>
-                        
-                    </li>
-                    <li>
-                        <div class="heading-time"><h5>Deails heading</h5><span>12:00 AM</span></div>
-                            <p>detail report</p>
-                            
-                        </li>
-            </ul>
-              
-                
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/friends">friends</a>
-            </li>
-            <!-- <li class="nav-item">
+          </ul>
+          <span class="align-center" *ngIf="auth.signalR.notifications.length<=0">you have no notification</span>
+
+        </div>
+      </li>
+
+
+      <!-- <li class="nav-item">
+        <a class="nav-link" routerLink="/">friends</a>
+      </li> -->
+      <!-- <li class="nav-item">
                 <a class="nav-link" routerLink="/user">Users</a>
             </li> -->
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/chat">Chat</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" (click)="logout()"><span class=" material-icons align-top">arrow_forward</span>Logout</a>
-            </li>
-        </ul>
-    </div>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/chat">Chat</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="logout()"><span class=" material-icons align-top">arrow_forward</span>Logout</a>
+      </li>
+    </ul>
+  </div>
 </nav>
 <!-- <app-message></app-message> -->
 <router-outlet></router-outlet>
+
+

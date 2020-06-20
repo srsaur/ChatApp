@@ -11,7 +11,7 @@ import { NgModule } from '@angular/core';
 import { MaterialModule } from './material/material.module';
 import { ChatPopUpComponent } from './chat-pop-up/chat-pop-up.component';
 
-export function getTokenString(){
+export function getTokenString() {
   return localStorage.getItem('token');
 }
 
@@ -29,24 +29,24 @@ export function getTokenString(){
     QuestionModule,
     HttpClientModule,
     JwtModule.forRoot({
-      config:{
-         tokenGetter:getTokenString
+      config: {
+        tokenGetter: getTokenString
       }
     })
   ],
-  providers:[
+  providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true
-    },
+    }
   ],
   bootstrap: [AppComponent],
-  entryComponents:[ChatPopUpComponent]
+  entryComponents: [ChatPopUpComponent]
 })
-export class AppModule { 
+export class AppModule {
 
-  
+
 
 }
 

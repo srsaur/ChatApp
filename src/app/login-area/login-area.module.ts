@@ -11,7 +11,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [HelpComponent,LoginComponent, RegisterComponent, LoginAreaComponent],
+  declarations: [LoginComponent, RegisterComponent, LoginAreaComponent],
   imports: [
     CommonModule,
     MaterialModule,

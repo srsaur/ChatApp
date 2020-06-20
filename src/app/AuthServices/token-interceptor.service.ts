@@ -15,7 +15,6 @@ export class TokenInterceptorService implements HttpInterceptor {
   constructor(private auth: AuthServiceService, private notify: NotificationService,private route:Router) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let token = this.auth.signalR.Auth.tokenGetter();
-    console.log('Start');
     if (!!token) {
       req = req.clone({
         setHeaders: { Authorization: `Bearer ${token}` }
@@ -48,7 +47,7 @@ export class TokenInterceptorService implements HttpInterceptor {
         return empty();
       }),
       finalize(() => {
-        console.log('End');
+
       })
     );
   }

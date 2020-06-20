@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { QuestionComponent } from './question/question.component';
 import { AskQuestionComponent } from './question/components/ask-question/ask-question.component';
+import { AuthGaurdService as AuthGaurd } from './AuthServices/auth-gaurd.service';
 
 const routes: Routes = [
   {path:'',loadChildren:'./layout-module/layout-module.module#LayoutModuleModule'},

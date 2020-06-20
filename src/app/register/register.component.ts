@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { NotificationService } from '../AuthServices/notification.service';
 import { AppSetting } from '../AppSetting';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,6 @@ import { AppSetting } from '../AppSetting';
 export class RegisterComponent implements OnInit {
   @ViewChild('labelInput')
   labelInput:ElementRef;
-
   progress=0;
   img='';
   gender="before";
@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
       imagePath:['',[Validators.required]]
   })
 
-  constructor(private formBuilder:FormBuilder,private client:HttpClient,private notify:NotificationService) { }
+  constructor(private formBuilder:FormBuilder,private client:HttpClient,private notify:NotificationService,private route:Router) { }
 
   ngOnInit() {
   }
@@ -41,14 +41,17 @@ let data= new FormData();
        self.client.post(AppSetting.apiUrl+"api/account",formData)
                        .subscribe(res=>{
                             self.notify.showNotification('Form Submit Successfully')
-                            self.builder.reset();
+                            // self.builder.reset();
+                            // self.labelInput.nativeElement.innerText="select file"
+                            // self.img='';
+                            self.route.navigate(['/account/login']);
                        });
   }
 
   onFileChange(files:FileList){
     let self=this;
-      this.labelInput.nativeElement.innerText=Array.from(files).map(f=>f.name).join(','); 
-      let file=files.item(0);    
+      self.labelInput.nativeElement.innerText=Array.from(files).map(f=>f.name).join(',');
+      let file=files.item(0);
       let data=new FormData();
       data.append('file',file,file.name)
       this.client.post(AppSetting.apiUrl+"api/upload",data,{reportProgress:true,observe:'events'})
@@ -57,8 +60,8 @@ let data= new FormData();
               self.progress=Math.round(100*event.loaded/event.total);
             }
             else if(event.type===HttpEventType.Response){
-              let val=AppSetting.apiUrl+`${event.body.result}`
-              self.builder.controls.imagePath.setValue(val)
+              self.img=AppSetting.apiUrl+`${event.body.result}`
+              self.builder.controls['imagePath'].setValue(self.img);
             }
          });
   }

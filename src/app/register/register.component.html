@@ -1,12 +1,11 @@
 <div class="row">
-  <div class="col-lg-9 offset-lg-3 ">
+  <div class="col-lg-6 offset-lg-3 ">
 
     <mat-card class="my-card">
       <mat-card-header>
         <mat-card-title>
           <mat-icon class="align-text-bottom">how_to_reg</mat-icon>Registation
         </mat-card-title>
-
       </mat-card-header>
       <mat-card-content>
         <form class="my-form" #hero [formGroup]="builder">
@@ -52,11 +51,11 @@
               </mat-form-field>
             </div>
             <div class="col-5">
-              <img [src]="builder.get('imagePath').value" class="img-thumbnail" alt="Cinque Terre">
+              <img [src]="img" onerror="this.onerror=null;this.src='./assets/img.jpg'" class="img-thumbnail" width="100" alt="Cinque Terre">
             </div>
           </div>
-          <div class="custom-file" id="customFile" lang="es">
-            <input type="file" class="custom-file-input" id="exampleInputFile" formControlName="imagePath"
+          <div class="custom-file" lang="es">
+            <input type="file" class="custom-file-input" id="exampleInputFile"
               (change)="onFileChange($event.target.files)" aria-describedby="fileHelp">
             <label class="custom-file-label" #labelInput for="exampleInputFile">
               select a File

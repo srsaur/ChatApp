@@ -27,7 +27,7 @@ figure img{
      font-weight:500;
      color:royalblue;
      text-align: center;padding-bottom:10px;
-     
+
  }
  .notification-popup {
     font-size:16px;
@@ -38,9 +38,9 @@ figure img{
 .notification-popup{
     position: absolute;
     top:100%;
-    
+
     left:0;
-    
+
     background:#000;
     width:200px;
 
@@ -70,3 +70,9 @@ color:beige;
     list-style: none;
     border-bottom:1px solid green;
 }
+
+/* dropdown Content*/
+
+
+
+

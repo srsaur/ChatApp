@@ -6,15 +6,14 @@ import { HelpComponent } from './help/help.component';
 import { LoginAreaComponent } from './login-area/login-area.component';
 
 const routes:Routes=[
-  { 
+  {
     path:'',
     component:LoginAreaComponent
    ,children:[
     {path:'login',component:LoginComponent},
-    {path:'register',component:RegisterComponent},
-    {path:'help',component:HelpComponent}
+    {path:'register',component:RegisterComponent}
 ]},
-  
+
 ]
 
 @NgModule({

@@ -17,6 +17,8 @@ import { ProfileComponent } from '../profile/profile.component';
 import { AcceptedFriendsComponent } from '../accepted-friends/accepted-friends.component';
 import { FriendRequestsComponent } from '../friend-requests/friend-requests.component';
 import { ChatPopUpComponent } from '../chat-pop-up/chat-pop-up.component';
+import { fromNowPipe } from '../CustomPipe/fromNow';
+import { HelpComponent } from '../help/help.component';
 
 @NgModule({
   declarations: [
@@ -28,10 +30,12 @@ import { ChatPopUpComponent } from '../chat-pop-up/chat-pop-up.component';
     UserComponent,
     UserChatComponent,
     CustomPipe,
+    fromNowPipe,
     FriendListComponent,
     ProfileComponent,
     AcceptedFriendsComponent,
     FriendRequestsComponent,
+    HelpComponent
   ],
   imports: [
     CommonModule,

@@ -11,10 +11,10 @@ import { AppSetting } from '../AppSetting';
   styleUrls: ['./chat-pop-up.component.css']
 })
 export class ChatPopUpComponent implements OnInit {
-  
+
 
   @ViewChild('ChatDiv') private scrollContainer: ElementRef
-  
+
   userChat:Array<any>;
 
   selectedUser:string;
@@ -27,8 +27,8 @@ export class ChatPopUpComponent implements OnInit {
   ngOnInit() {
     this.currentUser=this.token.decodeToken().sid;
     this.getUserChat();
-    this.messageBind();   
-    this.typingBind(); 
+    this.messageBind();
+    this.typingBind();
   }
 
 
@@ -36,7 +36,7 @@ export class ChatPopUpComponent implements OnInit {
   getUserChat(){
     let self= this;
     self.selectedUser=self.data.userID;
-    self.client.get('http://localhost:5000/api/message/GetMessages?toUser='+self.selectedUser)
+    self.client.get(AppSetting.apiUrl+'api/message/GetMessages?toUser='+self.selectedUser)
                     .subscribe((res:any)=>{
                         self.userChat=res.result;
                         self.scrollToBottom();
@@ -69,7 +69,7 @@ export class ChatPopUpComponent implements OnInit {
       setTimeout(() => {
         this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
       });
-    } catch(err) { }                 
+    } catch(err) { }
 }
 
 notify(e){

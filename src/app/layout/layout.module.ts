@@ -11,17 +11,20 @@ import { FriendListComponent } from '../friend-list/friend-list.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { AcceptedFriendsComponent } from '../accepted-friends/accepted-friends.component';
 import { FriendRequestsComponent } from '../friend-requests/friend-requests.component';
+import { HelpComponent } from '../help/help.component';
 
 const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
+    canActivate:[AuthGuard],
     children: [
-      { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-      { path: 'details/:id', component: HeroDetailComponent , canActivate: [AuthGuard]},
-      { path: 'heroes', component: HerosComponent, canActivate: [AuthGuard] },
+      { path: 'home', component: HelpComponent },
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'details/:id', component: HeroDetailComponent },
+      { path: 'heroes', component: HerosComponent },
       {
-        path: 'profile', component: ProfileComponent, canActivate: [AuthGuard],
+        path: 'profile', component: ProfileComponent,
         children:
           [
             { path: 'user', component: FriendListComponent },
@@ -29,8 +32,8 @@ const routes: Routes = [
             {path:"friend",component:AcceptedFriendsComponent}
           ]
       },
-      { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
-      { path: 'chat', component: UserChatComponent, canActivate: [AuthGuard] }
+      { path: 'user', component: UserComponent },
+      { path: 'chat', component: UserChatComponent }
     ]
   }
 ]
